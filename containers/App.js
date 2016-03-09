@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux';
-import {selectQiita, fetchPosts} from '../actions';
+import {selectQiita, fetchPostsIfNeeded, invalidateQiita} from '../actions';
 import Picker from '../components/Picker';
 import Posts from '../components/Posts';
 
@@ -13,13 +13,13 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch, selectedQiita } = this.props;
-    dispatch(fetchPosts(selectedQiita));
+    dispatch(fetchPostsIfNeeded(selectedQiita));
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedQiita !== this.props.selectedQiita) {
       const { dispatch, selectedQiita } = nextProps
-      dispatch(fetchPosts(selectedQiita))
+      dispatch(fetchPostsIfNeeded(selectedQiita))
     }
   }
 
@@ -30,7 +30,8 @@ class App extends Component {
   handleRefreshClick(e) {
     e.preventDefault();
     const { dispatch, selectedQiita } = this.props;
-    dispatch(fetchPosts(selectedQiita));
+    dispatch(invalidateQiita);
+    dispatch(fetchPostsIfNeeded(selectedQiita));
   }
 
   render() {
