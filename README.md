@@ -1,11 +1,11 @@
-# redux-async-qiita-example
+# redux-async-qiita
 
 > Redux async qiita API example
 
 ## Installation
 
 ```
-$ git clone 
+$ git clone git@github.com:akameco/redux-async-qiita.git
 ```
 
 ## Usage
