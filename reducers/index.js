@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
-import {SELECT_QIITA, REQUEST_POSTS, RECEIVE_POSTS,INVALIDATE_QIITA} from '../actions';
+import {combineReducers} from 'redux';
+import {SELECT_QIITA, REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_QIITA} from '../actions';
 
 function selectedQiita(state = 'reactjs', action) {
   switch (action.type) {

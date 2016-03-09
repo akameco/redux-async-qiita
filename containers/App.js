@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selectQiita, fetchPostsIfNeeded, invalidateQiita} from '../actions';
 import Picker from '../components/Picker';
@@ -12,14 +12,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedQiita } = this.props;
+    const {dispatch, selectedQiita} = this.props;
     dispatch(fetchPostsIfNeeded(selectedQiita));
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedQiita !== this.props.selectedQiita) {
-      const { dispatch, selectedQiita } = nextProps
-      dispatch(fetchPostsIfNeeded(selectedQiita))
+      const {dispatch, selectedQiita} = nextProps;
+      dispatch(fetchPostsIfNeeded(selectedQiita));
     }
   }
 
@@ -29,7 +29,7 @@ class App extends Component {
 
   handleRefreshClick(e) {
     e.preventDefault();
-    const { dispatch, selectedQiita } = this.props;
+    const {dispatch, selectedQiita} = this.props;
     dispatch(invalidateQiita);
     dispatch(fetchPostsIfNeeded(selectedQiita));
   }
@@ -41,7 +41,8 @@ class App extends Component {
       <div>
         <Picker value={selectedQiita}
           onChange={this.handleChange}
-          options={['reactjs', 'Electron', 'redux']}/>
+          options={['reactjs', 'Electron', 'redux']}
+          />
         <p>
           {lastUpdated &&
             <span>
@@ -50,14 +51,14 @@ class App extends Component {
             </span>
           }
           {!isFetching &&
-            <a href='#' onClick={this.handleRefreshClick}>Refresh</a>
+            <a href="#" onClick={this.handleRefreshClick}>Refresh</a>
           }
         </p>
-        {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : <div style={{opacity: isFetching ? 0.5 : 1}}>
-              <Posts posts={posts}/>
-            </div>}
+        {isEmpty ?
+          (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>) :
+          <div style={{opacity: isFetching ? 0.5 : 1}}>
+            <Posts posts={posts}/>
+          </div>}
       </div>
     );
   }
@@ -69,7 +70,7 @@ App.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
-}
+};
 
 function mapStateToProps(state) {
   const {selectedQiita, postsByQiita} = state;
@@ -78,7 +79,7 @@ function mapStateToProps(state) {
     lastUpdated,
     items: posts
   } = postsByQiita[selectedQiita] || {
-    isFetching,
+    isFetching: true,
     items: []
   };
 

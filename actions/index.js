@@ -60,5 +60,5 @@ export function fetchPostsIfNeeded(qiita) {
     if (shouldFetchPosts(getState(), qiita)) {
       return dispatch(fetchPosts(qiita));
     }
-  }
+  };
 }
