@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleRefreshClick = this.handleRefreshClick.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +27,12 @@ class App extends Component {
     this.props.dispatch(selectQiita(nextQiita));
   }
 
+  handleRefreshClick(e) {
+    e.preventDefault();
+    const { dispatch, selectedQiita } = this.props;
+    dispatch(fetchPosts(selectedQiita));
+  }
+
   render() {
     const {selectedQiita, posts, isFetching} = this.props;
     const isEmpty = posts.length === 0;
@@ -36,7 +43,7 @@ class App extends Component {
           options={['reactjs', 'Electron']}/>
         <p>
           {!isFetching &&
-            <a href='#'>Refresh</a>
+            <a href='#' onClick={this.handleRefreshClick}>Refresh</a>
           }
         </p>
         {isEmpty
