@@ -30,6 +30,7 @@ function receivePosts(qiita, json) {
   return {
     type: RECEIVE_POSTS,
     qiita: qiita,
+    receivedAt: Date.now(),
     posts: json
   };
 }

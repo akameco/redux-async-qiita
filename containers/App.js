@@ -35,14 +35,20 @@ class App extends Component {
   }
 
   render() {
-    const {selectedQiita, posts, isFetching} = this.props;
+    const {selectedQiita, posts, isFetching, lastUpdated} = this.props;
     const isEmpty = posts.length === 0;
     return (
       <div>
         <Picker value={selectedQiita}
           onChange={this.handleChange}
-          options={['reactjs', 'Electron']}/>
+          options={['reactjs', 'Electron', 'redux']}/>
         <p>
+          {lastUpdated &&
+            <span>
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+              {' '}
+            </span>
+          }
           {!isFetching &&
             <a href='#' onClick={this.handleRefreshClick}>Refresh</a>
           }
@@ -61,15 +67,15 @@ App.propTypes = {
   selectedQiita: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
-  // lastUpdated: PropTypes.number,
 }
-
 
 function mapStateToProps(state) {
   const {selectedQiita, postsByQiita} = state;
   const {
     isFetching,
+    lastUpdated,
     items: posts
   } = postsByQiita[selectedQiita] || {
     isFetching,
@@ -79,6 +85,7 @@ function mapStateToProps(state) {
   return {
     selectedQiita,
     posts,
+    lastUpdated,
     isFetching
   };
 }

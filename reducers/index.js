@@ -29,6 +29,7 @@ function posts(state = {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
+        lastUpdated: action.receivedAt,
         items: action.posts
       });
     default:
