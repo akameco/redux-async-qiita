@@ -30,7 +30,7 @@ class App extends Component {
   handleRefreshClick(e) {
     e.preventDefault();
     const {dispatch, selectedQiita} = this.props;
-    dispatch(invalidateQiita);
+    dispatch(invalidateQiita(selectedQiita));
     dispatch(fetchPostsIfNeeded(selectedQiita));
   }
 
