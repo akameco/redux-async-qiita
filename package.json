@@ -22,7 +22,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
-    "eslint-config-xo-react": "^0.5.0",
+    "eslint-config-xo-react-space": "0.0.1",
     "eslint-plugin-react": "^4.2.1",
     "expect": "^1.6.0",
     "express": "^4.13.3",
@@ -34,12 +34,13 @@
   },
   "xo": {
     "space": true,
-    "extends": "xo-react",
-    "envs": ["browser"],
-    "rules": {
-      "react/jsx-indent": [2, 2],
-      "react/jsx-indent-props": [2, 2]
-    },
-    "ignores": ["server.js", "webpack.config.js"]
+    "extends": "xo-react-space",
+    "envs": [
+      "browser"
+    ],
+    "ignores": [
+      "server.js",
+      "webpack.config.js"
+    ]
   }
 }
