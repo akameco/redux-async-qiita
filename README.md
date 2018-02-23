@@ -1,5 +1,7 @@
 # redux-async-qiita
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/akameco/redux-async-qiita.svg)](https://greenkeeper.io/)
+
 > Redux async qiita API example
 
 ## Installation
